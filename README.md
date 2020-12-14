@@ -20,6 +20,9 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 		- [Search for places, countries and stations](#search-for-places-countries-and-stations)
 			- [Request](#request-4)
 			- [Response](#response-4)
+		- [Get station staff picks](#get-station-staff-picks)
+			- [Request](#request-5)
+			- [Response](#response-5)
 
 ## Base URLs
 
@@ -180,3 +183,33 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | query                          | String | Query                  | Supplied search query                                                         |
 | version                        | String | 8fc46fcc               | Possibly current Git commit hash of the website                               |
 | apiVersion                     | Number | 1                      | API version, 1 is the only one currently known                                |
+
+### Get station staff picks
+
+#### Request
+
+- Method: GET
+- Endpoint: /ara/content/static-pages/our-favorites
+
+#### Response
+
+- Format: JSON
+
+| Name                              | Type   | Example value                           | Description                                                                        |
+| --------------------------------- | ------ | --------------------------------------- | ---------------------------------------------------------------------------------- |
+| apiVersion                        | Number | 1                                       | API version, 1 is the only one currently known                                     |
+| version                           | String | 8fc46fcc                                | Possibly current Git commit hash of the website                                    |
+| data                              | Object |                                         |                                                                                    |
+| data.title                        | String | Search                                  | Title of this static page                                                          |
+| data.url                          | String | /search                                 | Front-end link of this static page                                                 |
+| data.content                      | Array  |                                         | Array of lists                                                                     |
+| data.content[n]                   | Object |                                         | A list object                                                                      |
+| data.content[n].type              | String | list                                    | Currently always list                                                              |
+| data.content[n].title             | String | Independent Sounds                      | Title of this list                                                                 |
+| data.content[n].subtitle          | String | Clashing genres and independent sounds. | Description of this list                                                           |
+| data.content[n].itemsType         | String | channel                                 | Type of all items in this list                                                     |
+| data.content[n].items             | Array  |                                         | Array of elements in this list                                                     |
+| data.content[n].items[n]          | Object |                                         | List element, currently always a station                                           |
+| data.content[n].items[n].title    | String | NTS 1                                   | Name of this station                                                               |
+| data.content[n].items[n].subtitle | String | London, United Kingdom                  | Subtitle displayed in the front-end, currently always the place this station is in |
+| data.content[n].items[n].href     | String | /listen/nts/wT9JJD4j                    | Path that can be appended to the hostname, that results in the front-end link      |
