@@ -23,6 +23,9 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 		- [Get station staff picks](#get-station-staff-picks)
 			- [Request](#request-5)
 			- [Response](#response-5)
+		- [Get client's location via IP](#get-clients-location-via-ip)
+			- [Request](#request-6)
+			- [Response](#response-6)
 
 ## Base URLs
 
@@ -213,3 +216,28 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | data.content[n].items[n].title    | String | NTS 1                                   | Name of this station                                                               |
 | data.content[n].items[n].subtitle | String | London, United Kingdom                  | Subtitle displayed in the front-end, currently always the place this station is in |
 | data.content[n].items[n].href     | String | /listen/nts/wT9JJD4j                    | Path that can be appended to the hostname, that results in the front-end link      |
+
+### Get client's location via IP
+
+#### Request
+
+- Method: GET
+- Endpoint: /geo
+
+#### Response
+
+- Format: JSON
+
+| Name         | Type   | Example value    | Description                                                         |
+| ------------ | ------ | ---------------- | ------------------------------------------------------------------- |
+| ip           | String | 185.240.246.172  | Client's IP address                                                 |
+| country_code | String | US               | ISO 3166-1 alpha-2 code of country the client's IP is from          |
+| country_name | String | United States    | Name of the country the client's IP is from                         |
+| region_code  | String | NY               | ISO 3166-2 subdivision code of the area the client's IP is from     |
+| region_name  | String | New York         | Name of the area the client's IP is from                            |
+| city         | String | New York         | Name of the city the client's IP is from                            |
+| zip_code     | String | 10012            | ZIP code of the city the client's IP is from                        |
+| time_zone    | String | America/New_York | Time zone of the client, determined via their IP address            |
+| latitude     | String | 40.7279          | Latitude of the client's location, determined via their IP address  |
+| longitude    | String | 73.9966          | Longitude of the client's location, determined via their IP address |
+| metro_code   | String | 501              | Area code if in the United States, 0 otherwise                      |
