@@ -45,6 +45,7 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | version              | String  | 8fc46fcc               | Possibly current Git commit hash of the website                               |
 | data                 | Object  |                        |                                                                               |
 | data.list            | Array   |                        | List of all areas where radio stations are available                          |
+| data.list[n]         | Object  |                        | A place object                                                                |
 | data.list[n].id      | String  | PbqG2Mmi               | Unique ID of this place, can be used for subsequent API requests              |
 | data.list[n].title   | String  | Ghazni                 | Name of this place                                                            |
 | data.list[n].country | String  | Afghanistan            | Country this place is in                                                      |
@@ -82,11 +83,13 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | data.subtitle                               | String | Afghanistan                   | Subtitle displayed in the front-end, currently always the country this place is in                         |
 | data.count                                  | Number | 1                             | Number of available radio stations from this area                                                          |
 | data.content                                | Array  |                               | Lists related to this place, displayed in the front-end                                                    |
+| data.content[n]                             | Object |                               | A list object                                                                                              |
 | data.content[n].type                        | String | list                          | Currently always list                                                                                      |
 | data.content[n].title                       | String | Stations in Ghazni            | Title of this list                                                                                         |
 | data.content[n].rightAccessory              | String | chevron-right                 | Content to display at the right side of all list items in the front-end, not available if itemsType is set |
 | data.content[n].itemsType                   | String | channel                       | Type of this item, not available if rightAccessory is set, currently always channel                        |
 | data.content[n].items                       | Array  |                               | All items in this list                                                                                     |
+| data.content[n].items[n]                    | Object |                               | An item object                                                                                             |
 | data.content[n].items[n].title              | String | Kilid Ghazni                  | Title of this list item, for example the name of a radio station                                           |
 | data.content[n].items[n].subtitle           | String | Islamabad                     | Subtitle of this list item, displayed in the front-end, not always available                               |
 | data.content[n].items[n].rightDetail        | String | 134 km                        | Additional details about this item, displayed in grey to the right of the item the front-end               |
@@ -163,6 +166,7 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | took                           | Number | 1                      |                                                                               |
 | hits                           | Object |                        | Array of results                                                              |
 | hits.hits                      | Array  |                        | Array of results                                                              |
+| hits.hits[n]                   | Object |                        | A result object                                                               |
 | hits.hits[n]._id               | String | 4fDdWHYB33znsq_AiAv8   | ID of result, possibly used by search indexer                                 |
 | hits.hits[n]._score            | Number | 197.44696              | Relevance of result, possibly used by search indexer                          |
 | hits.hits[n]._source           | Object |                        | Search result itself                                                          |
