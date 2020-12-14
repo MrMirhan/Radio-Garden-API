@@ -26,6 +26,7 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 		- [Get client's location via IP](#get-clients-location-via-ip)
 			- [Request](#request-6)
 			- [Response](#response-6)
+	- [Notes](#notes)
 
 ## Base URLs
 
@@ -241,3 +242,7 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | latitude     | String | 40.7279          | Latitude of the client's location, determined via their IP address  |
 | longitude    | String | 73.9966          | Longitude of the client's location, determined via their IP address |
 | metro_code   | String | 501              | Area code if in the United States, 0 otherwise                      |
+
+## Notes
+
+- GET /identify is another endpoint, though it doesn't return any response. Possibly used for analytics.
