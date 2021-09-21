@@ -54,14 +54,14 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | data.list            | Array   |                        | List of all areas where radio stations are available                          |
 | data.list[n]         | Object  |                        | A place object                                                                |
 | data.list[n].id      | String  | PbqG2Mmi               | Unique ID of this place, can be used for subsequent API requests              |
-| data.list[n].title   | String  | Ghazni                 | Name of this place                                                            |
-| data.list[n].country | String  | Afghanistan            | Country this place is in                                                      |
-| data.list[n].url     | String  | /visit/ghazni/PbqG2Mmi | Path that can be appended to the hostname, that results in the front-end link |
-| data.list[n].size    | Number  | 1                      | Number of available radio stations from this area                             |
-| data.list[n].boost   | Boolean | true                   |                                                                               |
 | data.list[n].geo     | Array   |                        | Coordinates of this place                                                     |
 | data.list[n].geo[0]  | Number  | 68.417                 | Longitude of this place                                                       |
 | data.list[n].geo[1]  | Number  | 33.545                 | Latitude of this place                                                        |
+| data.list[n].url     | String  | /visit/ghazni/PbqG2Mmi | Path that can be appended to the hostname, that results in the front-end link |
+| data.list[n].size    | Number  | 1                      | Number of available radio stations from this area                             |
+| data.list[n].boost   | Boolean | true                   |                                                                               |
+| data.list[n].title   | String  | Ghazni                 | Name of this place                                                            |
+| data.list[n].country | String  | Afghanistan            | Country this place is in                                                      |
 | data.version         | String  | 8fc46fcc               | Same value and description as version                                         |
 
 ### Get place or country details
@@ -85,17 +85,17 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | data.map[0]                                 | Number | 13.404954                     | Longitude of the country this item represents                                                              |
 | data.map[1]                                 | Number | 52.5200066                    | Latitude of the country this item represents                                                               |
 | data.title                                  | String | Ghazni                        | Name of this place                                                                                         |
-| data.url                                    | String | /visit/ghazni/PbqG2Mmi        | Path that can be appended to the hostname, that results in the front-end link                              |
-| data.utcOffset                              | Number | 4.5                           | Timezone offset from UTC in hours                                                                          |
 | data.subtitle                               | String | Afghanistan                   | Subtitle displayed in the front-end, currently always the country this place is in                         |
+| data.url                                    | String | /visit/ghazni/PbqG2Mmi        | Path that can be appended to the hostname, that results in the front-end link                              |
+| data.utcOffset                              | Number | 270                           | Timezone offset from UTC in minutes                                                                        |
 | data.count                                  | Number | 1                             | Number of available radio stations from this area                                                          |
 | data.content                                | Array  |                               | Lists related to this place, displayed in the front-end                                                    |
 | data.content[n]                             | Object |                               | A list object                                                                                              |
 | data.content[n].type                        | String | list                          | Currently always list                                                                                      |
 | data.content[n].title                       | String | Stations in Ghazni            | Title of this list                                                                                         |
-| data.content[n].rightAccessory              | String | chevron-right                 | Content to display at the right side of all list items in the front-end, not available if itemsType is set |
-| data.content[n].itemsType                   | String | channel                       | Type of this item, not available if rightAccessory is set, currently always channel                        |
 | data.content[n].items                       | Array  |                               | All items in this list                                                                                     |
+| data.content[n].itemsType                   | String | channel                       | Type of this item, not available if rightAccessory is set, currently always channel                        |
+| data.content[n].rightAccessory              | String | chevron-right                 | Content to display at the right side of all list items in the front-end, not available if itemsType is set |
 | data.content[n].items[n]                    | Object |                               | An item object                                                                                             |
 | data.content[n].items[n].title              | String | Kilid Ghazni                  | Title of this list item, for example the name of a radio station                                           |
 | data.content[n].items[n].subtitle           | String | Islamabad                     | Subtitle of this list item, displayed in the front-end, not always available                               |
@@ -133,10 +133,10 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | apiVersion         | Number  | 1                                          | API version, 1 is the only one currently known                                       |
 | version            | String  | 8fc46fcc                                   | Possibly current Git commit hash of the website                                      |
 | data               | Object  |                                            |                                                                                      |
-| data.id            | String  | eP-8QMgM                                   | Unique ID of this station, can be used for subsequent API requests                   |
 | data.title         | String  | Kilid Ghazni                               | Name of this station                                                                 |
-| data.website       | String  | https://tkg.af/radios/radio-killid-ghazni/ | Official website of this station                                                     |
+| data.id            | String  | eP-8QMgM                                   | Unique ID of this station, can be used for subsequent API requests                   |
 | data.url           | String  | /listen/kilid-ghazni/eP-8QMgM              | Path that can be appended to the hostname, that results in the front-end link        |
+| data.website       | String  | https://tkg.af/radios/radio-killid-ghazni/ | Official website of this station                                                     |
 | data.secure        | Boolean | false                                      | Whether the radio stream is served via HTTPS                                         |
 | data.place         | Object  |                                            | Details about the place this station is in                                           |
 | data.place.id      | String  | PbqG2Mmi                                   | Unique ID of the place this station is in, can be used for subsequent API requests   |
@@ -179,10 +179,8 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | hits.hits[n]._source           | Object |                        | Search result itself                                                          |
 | hits.hits[n]._source.code      | String | AF                     | Country code of place, country or station                                     |
 | hits.hits[n]._source.subtitle  | String | Afghanistan            | Country if result is place, place if result is station                        |
-| hits.hits[n]._source.placeId   | String | PbqG2Mmi               | Unique ID of place, country or place station is in                            |
 | hits.hits[n]._source.title     | String | Ghazni                 | Name of this place, country or station                                        |
 | hits.hits[n]._source.type      | String | place                  | Type of this result, either place, country or channel                         |
-| hits.hits[0]._source.channelId | String | TJJTy9Oh               | Unique ID of this station, set only if result is a station                    |
 | hits.hits[n]._source.url       | String | /visit/ghazni/PbqG2Mmi | Path that can be appended to the hostname, that results in the front-end link |
 | query                          | String | Query                  | Supplied search query                                                         |
 | version                        | String | 8fc46fcc               | Possibly current Git commit hash of the website                               |
@@ -214,9 +212,9 @@ My attempt at trying to reverse-engineer and understand the Radio Garden API.
 | data.content[n].itemsType         | String | channel                                 | Type of all items in this list                                                     |
 | data.content[n].items             | Array  |                                         | Array of elements in this list                                                     |
 | data.content[n].items[n]          | Object |                                         | List element, currently always a station                                           |
-| data.content[n].items[n].title    | String | NTS 1                                   | Name of this station                                                               |
-| data.content[n].items[n].subtitle | String | London, United Kingdom                  | Subtitle displayed in the front-end, currently always the place this station is in |
 | data.content[n].items[n].href     | String | /listen/nts/wT9JJD4j                    | Path that can be appended to the hostname, that results in the front-end link      |
+| data.content[n].items[n].subtitle | String | London, United Kingdom                  | Subtitle displayed in the front-end, currently always the place this station is in |
+| data.content[n].items[n].title    | String | NTS 1                                   | Name of this station                                                               |
 
 ### Get client's location via IP
 
